@@ -1,0 +1,237 @@
+;;;life_risk; physical_health;rape_incest;fetal_impairment;medical_authorization;judicial_consent_minors;husband_consent;criminal_charge;post_abortion_law;contradictory_legal_systems;age_limit;marital_status_restriction;third_party_authorization
+;Region, subregion or country* ;Country code;Please indicate the legal grounds on which abortion in currently permitted in the country;;;;;;;;Does the Government have any law(s) or regulation(s) that ensure access to post-abortion care, irrespective of the legal status of abortion?;If the Government has any law(s) or regulation(s) that ensure access to post-abortion care, irrespective of the legal status of abortion, are there any contradicting plural legal systems?;Does the Government have any law(s) or regulation(s) that restrict access to post-abortion care services based on any of the following characteristics?;;
+;AFRICA;903;;;;;;;;;;;Age;Marital Status;3rd party authorization (e.g. spousal, parental/guardian, medical)
+;Eastern Africa;910;;;;;;;;;;;;;
+;Burundi;108;;;;;;;;;;;;;
+;Comoros;174;;;;;;;;;;;;;
+;Djibouti;262;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Eritrea;232;Yes;Yes;No;Yes;Yes;No;Yes;Yes;Yes;No;..;..;..
+;Ethiopia;231;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Kenya;404;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Madagascar;450;Yes;Yes;Yes;Yes;Yes;Yes;No;No;Yes;No;No;No;No
+;Malawi;454;Yes;Yes;No;No;Yes;No;No;Yes;Yes;No;No;No;No
+;Mauritius;480;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Mozambique;508;Yes;Yes;No;No;Yes;No;No;Yes;Yes;No;No;No;No
+;Rwanda;646;Yes;Yes;Yes;Yes;Yes;Yes;No;Yes;Yes;No;No;No;No
+;Seychelles;690;Yes;Yes;..;Yes;Yes;Yes;No;No;Yes;No;Yes;No;No
+;Somalia;706;Yes;Yes;Yes;Yes;Yes;Yes;Yes;Yes;Yes;No;No;No;No
+;South Sudan;728;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Uganda;800;—;—;—;—;—;—;—;—;—;—;—;—;—
+;United Republic of Tanzania;834;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Zambia;894;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Zimbabwe;716;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Middle Africa;911;Yes;Yes;Yes;Yes;Yes;No;No;Yes;Yes;No;Yes;No;Yes
+;Angola;24;Yes;Yes;Yes;Yes;Yes;Yes;No;Yes;Yes;No;No;No;No
+;Cameroon;120;;;;;;;;;;;;;
+;Central African Republic;140;Yes;Yes;Yes;Yes;Yes;Yes;Yes;Yes;No;Not Applicable;Not Applicable;Not Applicable;Not Applicable
+;Chad;148;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Congo;178;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Democratic Republic of the Congo;180;No;No;No;Yes;No;No;No;Yes;Yes;Yes;No;No;No
+;Equatorial Guinea;226;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Gabon;266;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Sao Tome and Principe;678;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Northern Africa;912;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Algeria;12;Yes;Yes;Yes;Yes;Yes;Yes;Yes;Yes;No;Not Applicable;Not Applicable;Not Applicable;Not Applicable
+;Egypt;818;;;;;;;;;;;;;
+;Libya;434;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Morocco;504;Yes;Yes;No;No;Yes;..;Yes;Yes;Yes;No;No;No;No
+;Sudan;729;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Tunisia;788;Yes;Yes;No;No;..;..;..;Yes;Yes;No;No;No;No
+;Southern Africa;913;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Botswana;72;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Eswatini;748;;;;;;;;;;;;;
+;Lesotho;426;Yes;Yes;Yes;Yes;Yes;Yes;Yes;Yes;Yes;No;No;No;No
+;Namibia;516;Yes;Yes;Yes;Yes;No;No;No;Yes;Yes;No;No;No;No
+;South Africa;710;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Western Africa;914;Yes;Yes;Yes;Yes;Yes;Yes;Yes;Yes;Yes;No;No;No;No
+;Benin;204;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Burkina Faso;854;;;;;;;;;;;;;
+;Cabo Verde;132;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Côte d'Ivoire;384;Yes;Yes;Yes;Yes;Yes;No;No;Yes;Yes;No;No;No;No
+;Gambia;270;Yes;Yes;Yes;Yes;No;Yes;No;Yes;Yes;No;No;No;No
+;Ghana;288;Yes;Yes;No;Yes;No;No;No;Yes;Yes;No;No;No;No
+;Guinea;324;Yes;No;Yes;Yes;Yes;Yes;Yes;No;Yes;No;No;No;No
+;Guinea-Bissau;624;Yes;Yes;Yes;Yes;Yes;No;No;Yes;Yes;No;No;No;No
+;Liberia;430;Yes;Yes;Yes;Yes;No;No;Yes;No;Yes;No;No;No;No
+;Mali;466;Yes;Yes;Yes;Yes;No;No;No;No;No;Not Applicable;Not Applicable;Not Applicable;Not Applicable
+;Mauritania;478;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Niger;562;Yes;Yes;Yes;Yes;Yes;Yes;Yes;Yes;Yes;No;..;..;..
+;Nigeria;566;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Senegal;686;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Sierra Leone;694;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Togo;768;Yes;No;No;No;No;No;No;Yes;Yes;No;No;No;No
+;ASIA;935;Yes;Yes;No;No;Yes;No;No;Yes;Yes;No;No;No;No
+;Central Asia;5500;Yes;No;Yes;Yes;Yes;Yes;..;Yes;Yes;No;No;No;No
+;Kazakhstan;398;;;;;;;;;;;;;
+;Kyrgyzstan;417;;;;;;;;;;;;;
+;Tajikistan;762;Yes;Yes;Yes;Yes;Yes;No;No;No;Yes;No;No;No;Yes
+;Turkmenistan;795;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Uzbekistan;860;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Eastern Asia;906;Yes;Yes;Yes;Yes;Yes;Yes;No;No;Yes;No;No;No;No
+;China;156;Yes;Yes;Yes;Yes;Yes;No;No;Yes;Yes;No;No;No;No
+;Dem. People's Republic of Korea;408;;;;;;;;;;;;;
+;Japan;392;Yes;Yes;No;Yes;No;No;No;No;Yes;No;No;No;No
+;Mongolia;496;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Republic of Korea;410;Yes;Yes;Yes;No;Yes;No;Yes;Yes;No;Not Applicable;Not Applicable;Not Applicable;Not Applicable
+;South-Eastern Asia;920;Yes;Yes;Yes;Yes;No;No;No;No;Yes;No;..;..;..
+;Brunei Darussalam;96;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Cambodia;116;;;;;;;;;;;;;
+;Indonesia;360;Yes;Yes;No;No;No;No;Yes;Yes;No;Not Applicable;Not Applicable;Not Applicable;Not Applicable
+;Lao People's Democratic Republic;418;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Malaysia;458;Yes;No;Yes;Yes;Yes;Yes;Yes;Yes;Yes;No;No;No;Yes
+;Myanmar;104;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Philippines;608;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Singapore;702;Yes;No;No;No;Yes;Yes;Yes;Yes;Yes;No;No;No;No
+;Thailand;764;No;No;No;No;Not Applicable;Not Applicable;Not Applicable;Yes;Yes;No;No;No;No
+;Timor-Leste;626;Yes;Yes;Yes;Yes;Yes;No;No;Yes;No;Not Applicable;Not Applicable;Not Applicable;Not Applicable
+;Viet Nam;704;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Southern Asia;5501;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Afghanistan;4;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Bangladesh;50;;;;;;;;;;;;;
+;Bhutan;64;—;—;—;—;—;—;—;—;—;—;—;—;—
+;India;356;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Iran (Islamic Republic of);364;Yes;Yes;Yes;No;Yes;Yes;Yes;Yes;No;Not Applicable;Not Applicable;Not Applicable;Not Applicable
+;Maldives;462;Yes;Yes;Yes;Yes;Yes;No;No;No;Yes;No;No;No;No
+;Nepal;524;Yes;Yes;No;Yes;Yes;Yes;Yes;No;Yes;No;No;No;No
+;Pakistan;586;Yes;No;Yes;Yes;Yes;No;Yes;Yes;Yes;Yes;No;No;No
+;Sri Lanka;144;Yes;Yes;Yes;Yes;No;No;No;No;Yes;No;No;No;No
+;Western Asia;922;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Armenia;51;Yes;No;No;No;Yes;No;No;No;Yes;No;No;No;No
+;Azerbaijan;31;;;;;;;;;;;;;
+;Bahrain;48;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Cyprus;196;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Georgia;268;Yes;No;No;No;Yes;No;No;Yes;Yes;No;No;No;No
+;Iraq;368;Yes;Yes;Yes;Yes;Yes;Yes;No;No;No;Not Applicable;Not Applicable;Not Applicable;Not Applicable
+;Israel;376;Yes;Yes;Yes;Yes;Yes;No;No;No;Yes;No;No;No;No
+;Jordan;400;Yes;Yes;No;Yes;Yes;Yes;Yes;Yes;Yes;No;No;No;No
+;Kuwait;414;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Lebanon;422;Yes;Yes;No;Yes;Yes;Yes;Yes;Yes;Yes;No;No;Yes;Yes
+;Oman;512;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Qatar;634;Yes;No;No;No;Yes;..;..;Yes;Yes;No;No;No;No
+;Saudi Arabia;682;Yes;Yes;No;Yes;Yes;No;Yes;Yes;Yes;No;No;No;No
+;State of Palestine;275;Yes;Yes;Yes;Yes;Yes;Yes;No;Yes;Yes;No;No;No;No
+;Syrian Arab Republic;760;..;..;..;..;..;..;..;..;Yes;No;No;No;No
+;Turkey;792;Yes;Yes;Yes;No;Yes;Yes;Yes;Yes;Yes;No;No;No;No
+;United Arab Emirates;784;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Yemen;887;Yes;Yes;Yes;Yes;Yes;Yes;Yes;Yes;Yes;No;No;No;No
+;EUROPE;908;Yes;Yes;Yes;Yes;Yes;No;Yes;Yes;Yes;No;No;No;No
+;Eastern Europe;923;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Belarus;112;;;;;;;;;;;;;
+;Bulgaria;100;;;;;;;;;;;;;
+;Czechia;203;Yes;Yes;Yes;Yes;Yes;No;No;No;Yes;No;No;No;No
+;Hungary;348;Yes;Yes;Yes;Yes;Yes;No;No;No;Yes;No;No;No;No
+;Poland;616;Yes;Yes;Yes;Yes;Yes;No;No;No;Yes;No;No;No;No
+;Republic of Moldova;498;Yes;Yes;Yes;Yes;Yes;Yes;No;Yes;Yes;No;No;No;No
+;Romania;642;Yes;Yes;Yes;Yes;Yes;No;No;No;Yes;No;No;No;Yes
+;Russian Federation;643;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Slovakia;703;Yes;Yes;Yes;Yes;Yes;No;No;No;Yes;No;No;No;No
+;Ukraine;804;Yes;Yes;Yes;Yes;No;No;No;No;Yes;No;No;No;No
+;Northern Europe;924;Yes;Yes;Yes;Yes;Yes;No;No;Yes;Yes;No;No;No;Yes
+;Denmark;208;Yes;Yes;No;Yes;Yes;No;No;Yes;Yes;No;No;No;No
+;Estonia;233;;;;;;;;;;;;;
+;Finland;246;Yes;Yes;Yes;Yes;Yes;Yes;No;No;Yes;No;No;No;No
+;Iceland;352;Yes;Yes;Yes;Yes;Yes;No;No;No;Yes;No;No;No;No
+;Ireland;372;Yes;Yes;Yes;Yes;Yes;No;No;No;Yes;No;No;No;No
+;Latvia;428;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Lithuania;440;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Norway;578;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Sweden;752;Yes;Yes;Yes;Yes;Yes;No;No;No;Yes;No;No;No;No
+;United Kingdom;826;Yes;Yes;Yes;Yes;No;No;No;No;Yes;No;No;No;No
+;Southern Europe;925;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Albania;8;Yes;Yes;Yes;Yes;Yes;No;No;Yes;Yes;No;No;No;No
+;Andorra;20;;;;;;;;;;;;;
+;Bosnia and Herzegovina;70;Yes;Yes;Yes;Yes;Yes;No;No;No;Yes;No;No;No;No
+;Croatia;191;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Greece;300;Yes;Yes;Yes;Yes;Yes;Yes;No;No;Yes;No;No;No;No
+;Holy See;336;Yes;Yes;Yes;Yes;No;No;No;No;Yes;No;No;No;No
+;Italy;380;Yes;Yes;Yes;Yes;Yes;No;No;No;No;Not Applicable;Not Applicable;Not Applicable;Not Applicable
+;Malta;470;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Montenegro;499;—;—;—;—;—;—;—;—;—;—;—;—;—
+;North Macedonia;807;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Portugal;620;—;—;—;—;—;—;—;—;—;—;—;—;—
+;San Marino;674;Yes;Yes;Yes;Yes;Yes;..;..;Yes;Yes;No;No;No;No
+;Serbia;688;Yes;Yes;Yes;Yes;No;Yes;No;Yes;Yes;No;No;No;No
+;Slovenia;705;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Spain;724;Yes;Yes;Yes;Yes;No;No;No;No;Yes;No;No;No;No
+;Western Europe;926;Yes;Yes;Yes;Yes;Yes;No;No;No;Yes;No;No;No;No
+;Austria;40;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Belgium;56;;;;;;;;;;;;;
+;France;250;Yes;Yes;..;Yes;Yes;Yes;No;Yes;No;Not Applicable;Not Applicable;Not Applicable;Not Applicable
+;Germany;276;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Liechtenstein;438;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Luxembourg;442;Yes;Yes;Yes;No;No;No;No;Yes;Yes;No;No;No;Yes
+;Monaco;492;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Netherlands;528;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Switzerland;756;—;—;—;—;—;—;—;—;—;—;—;—;—
+;LATIN AMERICA AND THE CARIBBEAN;904;Yes;Yes;Yes;Yes;No;No;No;No;Yes;No;No;No;No
+;Caribbean;915;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Antigua and Barbuda;28;;;;;;;;;;;;;
+;Bahamas;44;;;;;;;;;;;;;
+;Barbados;52;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Cuba;192;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Dominica;212;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Dominican Republic;214;Yes;Yes;Yes;Yes;Yes;Yes;No;No;Yes;No;..;..;..
+;Grenada;308;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Haiti;332;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Jamaica;388;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Saint Kitts and Nevis;659;No;No;No;No;Not Applicable;Not Applicable;Not Applicable;Yes;Yes;No;No;No;No
+;Saint Lucia;662;Yes;Yes;No;Yes;No;No;No;No;Yes;No;No;No;No
+;Saint Vincent and the Grenadines;670;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Trinidad and Tobago;780;Yes;Yes;No;Yes;Yes;Yes;No;Yes;Yes;Yes;Yes;No;Yes
+;Central America;916;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Belize;84;Yes;Yes;No;No;Yes;No;No;Yes;No;Not Applicable;Not Applicable;Not Applicable;Not Applicable
+;Costa Rica;188;;;;;;;;;;;;;
+;El Salvador;222;Yes;Yes;Yes;Yes;Yes;No;No;Yes;Yes;No;No;No;No
+;Guatemala;320;Yes;Yes;No;No;Yes;No;No;Yes;Yes;No;No;No;No
+;Honduras;340;No;No;No;No;Not Applicable;Not Applicable;Not Applicable;Yes;Yes;No;No;No;No
+;Mexico;484;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Nicaragua;558;No;No;No;No;Not Applicable;Not Applicable;Not Applicable;Yes;Yes;No;No;No;No
+;Panama;591;Yes;Yes;Yes;Yes;No;No;No;Yes;No;Not Applicable;Not Applicable;Not Applicable;Not Applicable
+;South America;931;No;No;No;No;Not Applicable;Not Applicable;Not Applicable;Yes;Yes;No;No;No;No
+;Argentina;32;Yes;Yes;Yes;Yes;Yes;Yes;No;Yes;Yes;No;No;No;No
+;Bolivia (Plurinational State of);68;;;;;;;;;;;;;
+;Brazil;76;Yes;Yes;Yes;No;No;No;No;Yes;Yes;No;No;No;No
+;Chile;152;Yes;Yes;Yes;Yes;Yes;No;No;Yes;Yes;No;No;No;No
+;Colombia;170;Yes;No;Yes;No;Yes;Yes;No;Yes;Yes;No;No;No;No
+;Ecuador;218;Yes;Yes;Yes;Yes;Yes;Yes;No;Yes;Yes;No;No;No;No
+;Guyana;328;Yes;Yes;Yes;Yes;Yes;No;No;Yes;Yes;No;No;No;No
+;Paraguay;600;Yes;Yes;Yes;No;Yes;Yes;Yes;Yes;Yes;No;No;No;No
+;Peru;604;Yes;Yes;Yes;Yes;Yes;Yes;No;Yes;Yes;No;No;No;No
+;Suriname;740;No;No;No;No;Not Applicable;Not Applicable;Not Applicable;Yes;Yes;No;No;No;No
+;Uruguay;858;Yes;Yes;No;No;Yes;No;No;Yes;No;Not Applicable;Not Applicable;Not Applicable;Not Applicable
+;Venezuela (Bolivarian Republic of);862;—;—;—;—;—;—;—;—;—;—;—;—;—
+;NORTHERN AMERICA;905;Yes;Yes;Yes;Yes;No;No;No;Yes;Yes;No;No;No;No
+;Canada;124;Yes;No;No;No;..;..;..;Yes;Yes;No;No;No;No
+;United States of America;840;;;;;;;;;;;;;
+;OCEANIA;909;Yes;Yes;Yes;Yes;No;No;No;No;No;Not Applicable;Not Applicable;Not Applicable;Not Applicable
+;Australia/ New Zealand;927;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Australia;36;;;;;;;;;;;;;
+;New Zealand;554;;;;;;;;;;;;;
+;Melanesia;928;Yes;Yes;Yes;Yes;Yes;No;No;No;Yes;No;No;No;No
+;Fiji;242;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Papua New Guinea;598;;;;;;;;;;;;;
+;Solomon Islands;90;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Vanuatu;548;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Micronesia;954;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Kiribati;296;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Marshall Islands;584;;;;;;;;;;;;;
+;Micronesia (Fed. States of);583;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Nauru;520;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Palau;585;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Polynesia;957;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Cook Islands;184;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Niue;570;;;;;;;;;;;;;
+;Samoa;882;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Tonga;776;—;—;—;—;—;—;—;—;—;—;—;—;—
+;Tuvalu;798;Yes;Yes;No;No;Yes;No;No;Yes;No;Not Applicable;Not Applicable;Not Applicable;Not Applicable
+;;;—;—;—;—;—;—;—;—;—;—;—;—;—
+Notes: ;;;—;—;—;—;—;—;—;—;—;—;—;—;—
+"The designations employed in this publication and the material presented in it do not imply the expression of any opinion whatsoever on the part of the Secretariat of the United Nations concerning the legal status of any country, territory, city or area or of its authorities, or concerning the delimitation of its frontiers or boundaries.
+
+
+
+
+";;;;;;;;;;;;;;;
+In this table, data for countries or areas have been aggregated in six continental regions: Africa, Asia, Europe, Latin America and the Caribbean, Northern America, and Oceania. Further information on continental regions is available from https://unstats.un.org/unsd/methodology/m49/. Countries or areas are also grouped into geographic regions based on the classification being used to track progress towards the Sustainable Development Goals of the United Nations (see: https://unstats.un.org/sdgs/indicators/regional-groups/).;;;;;;;;;;;;;;;
+—;Indicates that a country did not respond to the Inquiry.;;;;;;;;;;;;;;
+.. ;Indicates that a country did not provide information for the subcategory.;;;;;;;;;;;;;;

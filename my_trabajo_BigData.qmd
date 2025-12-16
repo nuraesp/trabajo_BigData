@@ -1,0 +1,818 @@
+---
+title: "La evolución del aborto en las últimas décadas"
+ 
+description: "Análisis descriptivo y exploratorio del aborto en España utilizando datos estadísticos oficiales"
+
+author: 
+  - Rayan Akhnati Tafar
+  - Noura Es Salhi Piquer
+  - Giulia Piovesan
+date: today
+categories: [trabajo BigData, aborto]
+
+title-block-banner: "imagenes/abortion.jpg"
+title-block-banner-color: "#E57373"    
+title-block-banner-text-color: "#000000"      
+ 
+
+
+format: 
+  html:
+    theme: flatly                    
+    embed-resources: true
+    link-external-newwindow: true
+    toc: true
+    toc-location: left
+    toc-depth: 3
+    smooth-scroll: true
+    code-tools: true
+    code-fold: true
+    code-summary: "Mostrar / ocultar código"
+                  
+
+---
+
+::: callout-note
+Prohibir y criminalizar el aborto no acaba con su práctica, sino que lo convierte en un acto clandestino, peligroso e inseguro para las mujeres. 😥🥺👿
+:::
+
+
+# Introducción
+
+El aborto es la interrupción voluntaria o involuntaria del embarazo, y plantea cuestiones desde los derechos reproductivos de las mujeres hasta consideraciones morales y religiosas. A lo largo del tiempo su regulación ha variado de manera significativa en los países.
+
+En el año 1985 en Espana, bajo la Ley Orgánica 9/1985,de 5 de julio,conocida como la Ley de supuestos,que despenaliza la interrupción voluntaria del embarazo(IVE) bajo 3 circunstancias específicas:violacion (hasta 12 semanas),grave riesgo para la salud fisica o psiquica de la madre (sin limite),y graves taras fisicas o psiquicas del feto (hasta 22 semanas) ,siendo un hito que permitió el acceso al aborto legal en centros acreditados por primera vez,aunque aun dentro de un marco penal.
+
+Posteriormente la Ley Organica 2/2010 sustituyó a Ley Orgánica 9/1985. Hasta dia de hoy el aborto esta regulado por la Ley Orgánica 2/2010 que establece un marco legal para garantizar el derecho de las mujeres y niñas que puedan quedarse embarazadas. Esta normativa permite la interrupción voluntaria del embarazo hasta la semana 14 sin necesidad de justificación, y hasta la semana 22 en casos de riesgo grave para la vida de la persona gestante.
+
+La mayor parte de Europa ha aprobado leyes que protegen y despenalizan el aborto aunque siguen existiendo algunas barreras como los periodos de espera o el asesoramiento obligatorio que dificultan su práctica y desarrollo. En microestados como Andorra y Malta, con una presencia de la iglesia católica muy importante en la vida política y gubernamental, sigue siendo ilegal.
+
+# Bases de Datos
+
+Las bases de datos utilizadas han sido la OSF, WHO y Eurostat
+
+```{r}
+
+#| echo: false
+#| message: false
+#| warning: false
+
+my_osf <- "./imagenes/flagosf.png"
+my_euro <- "./imagenes/flageuro.png"
+my_who <- "./imagenes/flagwho.png"
+
+```
+
+:::::: columns
+::: {.column width="33%"}
+![](./imagenes/flagosf.png){width="100%"}
+:::
+
+::: {.column width="33%"}
+![](./imagenes/flageuro.png){width="100%"}
+:::
+
+::: {.column width="33%"}
+![](./imagenes/flagwho.png){width="100%"}
+:::
+::::::
+
+# Librerías
+
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+
+library(eurostat)
+library(tidyverse)
+library(sf)
+library(magrittr)
+library(dplyr)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(ggplot2)
+library(eurostat)
+library(sf)
+library(gt)
+library(gtExtras)
+library(rio)
+library(readr)
+library(forcats)
+library(giscoR)
+library(plotly)
+library(magrittr)
+```
+
+# Ámbito geográfico del aborto 
+
+## Evolución de los abortos en el Mundo
+
+El gráfico representa la cantidad total de abortos (número absoluto de procedimientos) por región del mundo entre 1990 y 2017. La escala vertical es logarítmica, lo que permite comparar de manera visual la evolución proporcional de las cifras entre regiones con volúmenes muy distintos, sin que las regiones con números más altos dominen la gráfica. Al hacer la interpretacion por regiones podemos observar: 
+
+1. Asia
+Es la región con el mayor volumen absoluto de abortos durante todo el período (esto se infiere porque su línea está sistemáticamente por encima del resto en escala logarítmica). Muestra una tendencia a la baja continua desde 1990, especialmente marcada entre 1990 y 2000.Esta reducción puede estar relacionada con políticas de planificación familiar.
+
+2. Europa y América del Norte
+Presenta un aumento hasta mediados de los 90, seguido de una reducción sostenida hasta estabilizarse a partir de 2010. El pico y posterior descenso pueden reflejar cambios legislativos, mayor acceso a anticoncepción de emergencia o evolución en los comportamientos reproductivos.
+
+3. América Latina
+Con una tendencia estable hasta 2000 y un incremento moderado pero claro a partir de ese año.El aumento puede deberse a mejoras en el reporte, liberalización legal en algunos países, o persistencia de altas necesidades insatisfechas de anticoncepción.
+
+4. África Subsahariana
+Muestra la tendencia decreciente más pronunciada en términos proporcionales desde 1990. Aunque partía de un volumen considerable, la reducción continua sugiere avances en acceso a métodos anticonceptivos, educación sexual o cambios demográficos.
+
+5. Asia Occidental y Norte de África
+Ligero aumento hacia el año 2000 y luego estabilización o leve descenso. La tendencia es la menos marcada entre todas las regiones.
+
+6. Oceanía
+Volumen más bajo de todas las regiones durante todo el período con una tendencia plana y estable, con muy poca variación.
+
+El descenso general puede relacionarse con:
+- Mejora en el acceso a anticoncepción moderna.
+- Educación sexual.
+- Cambios en la estructura por edad de la población.
+- Legislaciones más restrictivas o, por el contrario, más preventivas.
+
+El caso de América Latina destaca como región donde el número total ha crecido, posiblemente por la legalización parcial en algunos países que hace visible una práctica antes oculta.
+
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+
+ruta_global_abort_ind <- "./datasets/Global Abortion Incidence Dataset (1).csv"
+global_abortion <- rio::import(ruta_global_abort_ind)
+
+global_abort_mundial <- global_abortion %>% 
+  select(yearstart, numberofabortions, region) %>%
+  filter(!is.na(numberofabortions)) 
+
+
+global_abort_mundial <- global_abort_mundial %>%
+  mutate(region = case_when(
+    region %in% c("Australia and New Zealand", "Oceania (excluding Australia and New Zealand)") ~ "Oceanía",
+    region %in% c("Central and Southern Asia", "East and Southeastern Asia") ~ "Asia",
+    TRUE ~ region
+  ))
+
+abort_region_mundial <- global_abort_mundial %>% 
+  group_by(region, yearstart) %>% 
+  summarise(numberofabortions = sum(numberofabortions, na.rm = TRUE))
+
+
+
+
+p3 <- ggplot() +
+  geom_line(data = abort_region_mundial, aes(yearstart, numberofabortions, group = region, color= region))+
+  labs(
+    title = "Abortos en el mundo entre 1990 y 2017", 
+    x = "Año",
+    y= "Abortos") +
+  theme_minimal()
+
+p4 <- p3 + scale_y_continuous(breaks = c(0, 100000, 1000000, 10000000), labels = scales::comma)
+
+p4 <- p3 +
+  scale_y_log10(
+    labels = scales::comma)
+
+ggplotly(p4, width = 600, height = 400)
+
+```
+
+
+## Evolución de los abortos en Europa
+
+El gráfico muestra la evolución del número de abortos en distintos países europeos entre 1990 y 2017. En la parte superior del gráfico aparecen, para cada año, los países con mayor número de abortos, mientras que en la parte inferior se representan aquellos con las cifras más bajas. Además, se incluye la evolución de España y de Italia.
+
+En los primeros años del periodo analizado, Bielorrusia se sitúa como el país con mayor número de abortos, superando los 200.000 anuales. Sin embargo, a partir de finales de los años noventa, Francia y el Reino Unido pasan a ocupar de forma recurrente las primeras posiciones. Francia mantiene durante todo el periodo cifras muy elevadas y bastante estables, en torno a los 190.000–210.000 abortos anuales, mientras que el Reino Unido presenta valores similares, sin grandes oscilaciones. Esto puede explicarse, en parte, por su mayor tamaño poblacional y por la existencia de sistemas de registro consolidados.
+
+En el extremo inferior del gráfico se sitúan países como Islandia, Malta, Montenegro, Finlandia y Polonia. Estos países registran un número muy reducido de abortos, en muchos casos de solo unos pocos miles o incluso cifras cercanas a cero. En algunos casos, como Polonia, estas cifras tan bajas están relacionadas con una legislación muy restrictiva en materia de interrupción voluntaria del embarazo, mientras que en otros, como Islandia o Malta, el reducido tamaño de la población es un factor determinante.
+
+En cuanto a España, se observa una clara tendencia creciente desde 1990 hasta aproximadamente 2010–2011. Durante este periodo, el número de abortos aumenta desde unos 40.000 hasta alcanzar un máximo cercano a los 120.000. A partir de ese momento, se produce un ligero descenso y una posterior estabilización en torno a los 95.000–100.000 abortos anuales. Esta evolución puede estar asociada a cambios legislativos, a una mayor difusión de métodos anticonceptivos y a transformaciones demográficas.
+
+Por su parte, Italia presenta una tendencia descendente prácticamente continua a lo largo de todo el periodo analizado. Parte de cifras relativamente altas a comienzos de los años noventa, alrededor de 160.000 abortos, y desciende progresivamente hasta situarse por debajo de los 90.000 en 2017. Italia destaca, por tanto, como un ejemplo de reducción sostenida del número de abortos a lo largo del tiempo.
+
+Comparando ambos países, se observa que Italia presenta cifras superiores a las de España durante la mayor parte del periodo. No obstante, en torno a los años 2008–2011, las cifras tienden a converger y, en los últimos años, España llega incluso a superar ligeramente a Italia.
+
+En conclusión, el gráfico pone de manifiesto la coexistencia de tres patrones claros: países con cifras altas y estables (como Francia y el Reino Unido), países con cifras muy bajas (como Polonia o Islandia) y países con evoluciones diferenciadas, como España —con una fase de crecimiento seguida de estabilización— e Italia, con una disminución progresiva a lo largo del tiempo.
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+
+
+
+global_abort_europa <- global_abortion %>% 
+  select(country, yearstart, numberofabortions, region) %>%
+  filter(region == "Europe and Northern America") %>% 
+  filter(!(country %in% c("Canada", "Ukraine", "United States of America", 
+                        "Russian Federation", "Romania"))) %>% 
+  filter(!is.na(numberofabortions)) 
+
+
+
+p1 <- ggplot() +
+  geom_line(data = global_abort_europa %>% group_by(yearstart) %>% slice_max(numberofabortions),
+            aes(yearstart, numberofabortions), color = "black") +
+  geom_line(data = global_abort_europa %>% group_by(yearstart) %>% slice_min(numberofabortions),
+            aes(yearstart, numberofabortions), color = "black") +
+  geom_line(data = global_abort_europa%>% filter(country %in% c("Spain", "Italy")),
+            aes(x = yearstart, y = numberofabortions, color = country)) +
+  labs(
+    title = "Abortos en Europa entre 1990 y 2017", 
+    x = "Año",
+    y= "Abortos") +
+  theme_minimal()
+
+
+p2 <- p1 + 
+  geom_label(data = global_abort_europa %>% group_by(yearstart) %>% slice_max(numberofabortions) %>%
+      filter(yearstart == max(yearstart)), aes(yearstart, numberofabortions, label = country),
+      show.legend = FALSE, size = 3) +
+  geom_label(data = global_abort_europa %>% group_by(yearstart) %>% slice_min(numberofabortions) %>%
+      filter(yearstart == max(yearstart)), aes(yearstart, numberofabortions, label = country),
+      show.legend = FALSE, size = 3)
+
+p2
+```
+
+
+# Evolución del aborto en España
+
+## Abortos legalmente inducidos en España entre 1985 y 2010 
+
+
+El gráfico representa la evolución del número de abortos en España entre 1985 y 2010. A lo largo de todo el periodo se observa una tendencia general claramente ascendente, aunque con algunas variaciones según los años.
+
+En los primeros años, desde 1985 hasta finales de la década de los ochenta, el número de abortos es relativamente bajo, pero aumenta de forma rápida. Este crecimiento inicial coincide con la despenalización del aborto en determinados supuestos y con una progresiva normalización y registro de estas intervenciones.
+
+Durante la década de los noventa, el número de abortos continúa aumentando, aunque de manera más moderada. En este periodo se aprecia cierta estabilidad, con pequeñas fluctuaciones, situándose en torno a los 45.000–50.000 abortos anuales.
+
+A partir de finales de los años noventa y comienzos de los 2000, se produce un incremento más acusado y sostenido. El número de abortos crece de forma continua hasta alcanzar su punto máximo alrededor de 2007–2008, superando los 110.000 casos. Este aumento puede relacionarse con cambios sociales, demográficos y en el comportamiento reproductivo de la población.
+
+Finalmente, en los últimos años del periodo analizado, entre 2008 y 2010, el crecimiento se frena y se observan ligeras oscilaciones, manteniéndose el número de abortos en valores elevados.
+
+
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+my_table <- "demo_fabort" 
+df <- get_eurostat(my_table, time_format = 'raw', keepFlags = TRUE)
+df_names <- names(df)
+df <- label_eurostat(df, code = df_names, fix_duplicated = TRUE)
+rm(df_names, my_table)
+
+dist_geo <- df %>%
+  distinct(geo)
+
+count_geo <- df %>% 
+  count(geo == "Spain")
+
+df <- df %>% 
+  mutate(TIME_PERIOD = as.numeric(TIME_PERIOD)) %>% 
+  filter(TIME_PERIOD >= 1985)
+
+df_spain_85_10 <- df %>%
+  filter(
+    geo == "Spain",
+    between(TIME_PERIOD, 1985, 2010)
+  ) 
+
+aa<- df_spain_85_10 %>% filter(age == "Total")
+
+aa<- df_spain_85_10 %>% filter(age == "Total")
+
+g1 <- ggplot(aa,aes(x=TIME_PERIOD, y=values))+
+  geom_line(color="plum",linewidth=1) + 
+  geom_point(color="navyblue",size= 3)+
+  labs(title = "Evolución del aborto en España  desde 1985 y 2010",
+       x="Años",
+       y="Abortos"
+  )
+ggplotly(g1, width = 600, height = 400)
+```
+
+## Abortos después de introducirse la Ley de salud sexual y resporoductiva entre 2010 y 2023 
+
+El gráfico muestra la evolución del número de abortos en España entre 2010 y 2023 y refleja una trayectoria marcada por descensos, cambios de tendencia y un repunte final, que puede explicarse a partir del contexto legal, económico y social del periodo.
+
+En los primeros años, entre 2010 y 2013, el número de abortos se sitúa en niveles elevados, ligeramente por encima de los 110.000, pero inicia ya una tendencia descendente. Esta bajada puede relacionarse con varios factores concurrentes: la entrada en vigor de la **Ley de Salud Sexual y Reproductiva de 2010**, que reforzó la educación sexual y el acceso a métodos anticonceptivos, y el efecto todavía presente de políticas de apoyo a la natalidad como el **cheque bebé**, vigente hasta 2010, que pudo favorecer la continuación de algunos embarazos en un contexto de crisis económica.
+
+Entre 2013 y 2015 el descenso se intensifica y el número de abortos cae de forma notable, situándose en torno a los 94.000. Este periodo coincide con cambios demográficos importantes —reducción de la población joven y retraso de la maternidad— y con una mayor generalización de métodos anticonceptivos eficaces, lo que contribuye a la disminución de embarazos no deseados.
+
+A partir de 2015 y hasta 2019 se observa un ligero cambio de tendencia, con un aumento moderado y progresivo de los abortos, que vuelven a acercarse a los 100.000 casos. Esta recuperación sugiere una estabilización tras varios años de descenso, en un contexto social y económico algo más favorable.
+
+En 2020 se produce una caída muy acusada, alcanzándose el valor mínimo de todo el periodo. Este descenso excepcional se explica fundamentalmente por el impacto de la **pandemia de la COVID-19**, que limitó la movilidad, dificultó el acceso a los servicios sanitarios y alteró el registro de intervenciones médicas.
+
+Desde 2021 hasta 2023 el gráfico muestra un repunte claro y sostenido. El número de abortos aumenta año tras año y supera de nuevo los 100.000, aunque sin alcanzar los máximos de comienzos de la década. Este crecimiento indica una recuperación tras el impacto puntual de la pandemia.
+
+En conclusión, la gráfica evidencia que entre 2010 y 2023 el número de abortos en España no sigue una tendencia lineal, sino que está condicionado por **factores legales, preventivos, económicos, demográficos y excepcionales**, destacando el papel de la Ley de 2010 en la prevención, el efecto coyuntural de la pandemia y la posterior recuperación en los últimos años del periodo analizado.
+
+
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+df_spain_2010 <- df %>%
+  filter(geo=="Spain",TIME_PERIOD>=2010)
+
+#grafica
+bb <-df_spain_2010 %>% filter(age == "Total") 
+
+g2 <- ggplot(bb,aes(x=TIME_PERIOD, y=values))+
+  geom_line(color="plum",linewidth=1) + 
+  geom_point(color="navyblue",size= 2)+
+  labs(title = "Evolución del aborto en España desde 2010 hasta 2023",
+       x="Años",
+       y="Abortos"
+  )
+
+ggplotly(g2, width = 600, height = 400)
+```
+
+## Tasas de aborto en las Comunidades Autónomas
+
+El objetivo de este resumen es mostrar la dispersión de las **cifras anuales de abortos** en el territorio español, comparando la Comunidad con el **mayor número de abortos** frente a la que registró el **menor número**, y ofreciendo una **media** para contextualizar el dato.
+
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+df_spain_85_23 <- df %>%
+  filter(
+    geo == "Spain",
+    between(TIME_PERIOD, 1985, 2023)
+  )
+
+df_summary <- df_spain_85_23 %>%
+  group_by(TIME_PERIOD) %>%
+  summarise(
+    max_ev = max(values, na.rm = TRUE),   
+    mean_ev = mean(values, na.rm = TRUE), 
+    min_ev = min(values, na.rm = TRUE),   
+    .groups = 'drop'
+  )
+
+tabla_gt1 <- df_summary %>%
+  gt() %>%
+  tab_header(
+    title = "Resumen de Abortos en España (1985-2023)"
+  ) %>%
+  cols_label(
+    TIME_PERIOD = "Año",
+    min_ev = "N.ºAbortos Mínimo",
+    mean_ev = "N.ºAbortos Medio",
+    max_ev = "N.ºAbortos Máximo"
+  ) %>%
+  data_color(
+    columns = c(max_ev, min_ev),  
+    colors = scales::col_numeric(
+      palette = c("gray", "plum"),
+      domain = NULL
+    )
+  ) 
+
+DT::datatable(df_summary)
+```
+
+## Aborto en las Comunidades Autónomas
+
+Esta tabla resume las cinco Comunidades Autónomas (CC.AA.) que registraron la **tasa de Interrupción Voluntaria del Embarazo (IVE) más alta** en España en el año 2024.
+
+La métrica utilizada es la **Tasa de Abortos por cada 1.000 mujeres en edad fértil (15-44 años)**, lo que permite una comparación estandarizada y directa entre regiones, independientemente del tamaño de su población.
+
+**Diferencia Respecto a la Media Nacional:** Para ponerlo en contexto, la media nacional de abortos en 2024 se sitúa aproximadamente en **12,36 por cada 1.000 mujeres**. Las cinco Comunidades mostradas en esta tabla **superan todas la media española**, indicando una mayor prevalencia de la IVE en estas regiones. 
+
+
+**Las 5 CCAA con *mayores Tasas* de Aborto**
+
+Al igual que en las tasas más altas, esta métrica se expresa como el número de IVE por cada **1.000 mujeres en edad fértil (15-44 años)**, permitiendo una comparación directa de la incidencia real.
+
+Esta tabla muestra las cinco Comunidades Autónomas con la mayor tasa de Interrupción Voluntaria del Embarazo (IVE) en 2024. La tasa se calcula por cada 1.000 mujeres en edad fértil (15-44 años). Cataluña lidera la clasificación con una tasa de 14,89, lo que significa que casi 15 de cada 1.000 mujeres en edad fértil en esa Comunidad tuvieron un aborto ese año.
+
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+ruta_ccaa <- "./datasets/abortos_pccaa.csv"
+datos_aborto_pccaa <- rio::import(ruta_ccaa)
+
+datos_aborto_limpio <- datos_aborto_pccaa %>%
+  rename_with(
+      .fn = ~str_remove(., "X"), 
+      .cols = starts_with("X20") 
+    )
+datos_aborto_limpio <- import(
+  "./datasets/abortos_pccaa.csv", 
+  setclass = "tibble",
+  header = TRUE
+)
+datos_long <- datos_aborto_limpio %>%
+    pivot_longer(
+      cols = c(`2015`:`2024`), 
+      names_to = "Year",         
+      values_to = "Tasa"         
+    )
+datos_long$Year <- as.integer(datos_long$Year)
+datos_long <- datos_long %>%
+    mutate(Year = as.integer(Year))
+datos_long <- datos_long %>%
+  mutate(Tasa = trimws(Tasa))  
+datos_long <- datos_long %>%
+  mutate(Tasa = str_replace(Tasa, ",", "."))
+datos_long <- datos_long %>%
+  mutate(Tasa = as.numeric(Tasa))
+
+top5_mas_abortos <- datos_long %>% 
+    filter(Year == 2024) %>%
+    slice_max(Tasa, n = 5) %>% 
+  arrange(desc(Tasa))
+gt(top5_mas_abortos)
+```
+Estas Comunidades suelen contar con una **red sólida de clínicas privadas** concertadas (donde se realiza la gran mayoría de las IVE en España) y una menor tasa de objeción de conciencia en el sector público o privado, garantizando una **mayor accesibilidad**.**Las 5 CCAA con *menores Tasas* de Aborto**
+
+
+**Las 5 CC.AA con menores Tasas de Aborto**
+
+Las tasas más bajas se encuentran consistentemente en las Ciudades Autónomas de **Melilla** y **Ceuta**, ambas con 4.65 abortos por cada 1000 mujeres. Estos valores representan aproximadamente **la tercera parte** de las tasas más altas del país (como Cataluña, con 14.89).
+
+
+```{r}
+top5_menos_abortos <- datos_long %>% 
+  filter(Year == 2024) %>%
+  slice_min(Tasa, n = 5) %>% 
+  arrange(desc(Tasa))
+gt(top5_menos_abortos)
+
+
+
+
+datos_long <- datos_long %>%
+  rename(Comunidad = `Comunidad Autónoma`)
+
+
+crecimiento_abortos <- datos_long %>%
+  filter(Comunidad  != "Total") %>%
+  group_by(Comunidad ) %>% 
+mutate(
+crecimiento_anual = Tasa - lag(Tasa)) %>%
+  summarise(
+    Tasa_Inicial_2015 = first(Tasa), 
+    Tasa_Final_2024 = last(Tasa),  
+    Crecimiento_Total = Tasa_Final_2024 - Tasa_Inicial_2015,
+    .groups = 'drop' 
+  ) %>%
+  slice_max(Crecimiento_Total, n = 10) %>%
+  arrange(desc(Crecimiento_Total))
+
+gt(crecimiento_abortos)
+```
+
+En Comunidades como **Castilla y León, Murcia, Extremadura, La Rioja, Ceuta y Melilla**, la alta tasa de objeción de conciencia por parte del personal médico (especialmente ginecólogos y anestesistas) en la sanidad pública **impide la realización de la IVE** entre otros factores culturales.
+
+**Tasas de crecimiento IVE desde 2014 hasta 2024**
+
+Esta tabla resume la **variación absoluta** experimentada en la tasa de Interrupción Voluntaria del Embarazo (IVE) por cada 1.000 mujeres entre el inicio del periodo (2015) y el final (2024).
+
+El indicador clave es el **Crecimiento Total**, que se calcula como la diferencia entre la Tasa Final (2024) y la Tasa Inicial (2015). La tabla presenta las 10 Comunidades Autónomas donde este crecimiento fue más pronunciado.
+
+
+## Coropleta abortos en España en 2024
+
+Este mapa coropleta representa la **distribución geográfica de la Tasa de Interrupción Voluntaria del Embarazo (IVE)** por cada **1.000 mujeres en edad fértil (15-44 años)** en las Comunidades Autónomas (CC.AA.) y Ciudades Autónomas de España durante el año 2024.
+
+El mapa utiliza una escala de color para categorizar la incidencia del aborto, facilitando la identificación de patrones regionales:
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+mapa_ccaa <- gisco_get_nuts(
+  country = "ES",         
+  nuts_level = "2",       
+  resolution = "3"
+)
+
+datos_2024_completo <- datos_long %>% 
+  filter(Year == 2024, Comunidad != "Total") %>%
+  mutate(
+    CCAA_Limpia = case_when(
+      Comunidad == "Asturias, Principado de" ~ "Principado de Asturias",
+      Comunidad == "Baleares, Illes" ~ "Illes Balears",
+      Comunidad == "C. Valenciana" ~ "Comunidad Valenciana",
+      Comunidad == "Madrid, Comunidad de" ~ "Comunidad de Madrid",
+      Comunidad == "Murcia, Región de" ~ "Región de Murcia",
+      Comunidad == "Navarra, Comunidad Foral de" ~ "Comunidad Foral de Navarra",
+      Comunidad == "Castilla - La Mancha" ~ "Castilla-La Mancha", 
+      Comunidad == "Ceuta y Melilla, Ciudades Autónomas" ~ "Ciudad Autónoma de Ceuta",
+      TRUE ~ Comunidad
+    ),
+    Tasa = trimws(Tasa),
+    Tasa = str_replace(Tasa, ",", "."),
+    Tasa = as.numeric(Tasa))
+
+datos_2024_completo <- bind_rows(
+  datos_2024_completo,
+  datos_2024_completo %>%
+    filter(CCAA_Limpia == "Ciudad Autónoma de Ceuta") %>%
+    mutate(CCAA_Limpia = "Ciudad Autónoma de Melilla"))
+
+datos_2024_completo <- datos_2024_completo %>%
+  mutate(Categoria = cut(
+    Tasa,
+    breaks = c(-Inf, 9.0, 13.0, Inf),
+    labels = c("Baja (Gris)", "Media (Violeta Claro)", "Alta (Violeta)"),
+    right = FALSE))
+
+mapa_final <- mapa_ccaa %>% 
+  mutate(
+    CCAA_Limpia = case_when(
+      NAME_LATN %in% c("Ceuta", "Melilla") ~ "Ceuta y Melilla",
+      TRUE ~ NAME_LATN
+    )
+  ) %>%
+  left_join(datos_2024_completo, by = "CCAA_Limpia")
+
+paleta_colores <- c(
+  "Baja (Gris)" = "lightgrey", 
+  "Media (Violeta Claro)" = "#E6E6FA", 
+  "Alta (Violeta)" = "plum"
+)
+
+
+mapa_coropleta <- ggplot(mapa_final) +
+  geom_sf(
+    aes(fill = Categoria),
+    color = "grey60", 
+    linewidth = 0.2
+  ) +
+  scale_fill_manual(
+    values = paleta_colores,
+    name = "Tasa de Abortos (por 1.000) - 2024"
+  ) +
+  geom_sf_text(
+    aes(label = CCAA_Limpia),
+    size = 2,
+    fontface = "bold",
+    check_overlap = TRUE
+  ) +
+  labs(
+    title = "Tasa de Abortos por CCAA (2024)",
+    caption = "Clasificación: Baja < 9.0, Media < 13.0, Alta ≥ 13.0",
+    fill = "Categoría de Tasa"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    legend.position = "left",
+    legend.title = element_text(face = "bold.italic"),  
+    legend.text = element_text(size = 12),
+    plot.title = element_text(hjust = 0.5, face = "bold.italic", size = 16))
+
+mapa_coropleta
+
+```
+
+La distribución de las tasas de aborto en España no es un reflejo puro de la demanda de la población femenina, sino un indicador de la **eficacia de las políticas de gestión y la influencia de la objeción de conciencia** en el sistema sanitario de cada Comunidad.
+
+Las tasas mínimas suelen indicar **barreras de acceso**, y las tasas máximas suelen indicar **servicios de referencia** que absorben la demanda de otras zonas.
+
+## Abortos precovid y postcovid 
+Esta tabla resume la **máxima y mínima tasa de interrupción voluntaria del embarazo (IVE)** por cada 1.000 mujeres en edad fértil (15-44 años) en España, agrupando los datos en tres bloques temporales:
+
+**-Pre-COVID:** Años anteriores a la pandemia (hasta 2019).
+
+**--COVID:** Años directamente afectados por las restricciones (2020-2021).
+
+**---Post-COVID:** Años de recuperación y nueva normalidad (a partir de 2022).
+
+Aunque la pandemia pudo afectar la movilidad y el acceso a los servicios (principalmente en 2020 y 2021), la tabla sugiere que el COVID-19 **no alteró fundamentalmente el patrón regional de alta y baja incidencia** de abortos en España. Las Comunidades que ya tenían las tasas más altas (como Cataluña) y las más bajas (como Ceuta o Melilla) mantuvieron sus posiciones relativas.
+
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+
+datos_long <- datos_long %>%
+  mutate(
+    Bloque = case_when(
+      Year <= 2019 ~ "Pre-COVID",
+      Year %in% 2020:2021 ~ "COVID",
+      Year >= 2022 ~ "Post-COVID"))
+
+comparacion <- datos_long %>%
+  group_by(Bloque) %>%
+  summarise(
+    Mayor_Tasa_CCAA = Comunidad[which.max(Tasa)],
+    Mayor_Tasa = max(Tasa),
+    Menor_Tasa_CCAA = Comunidad[which.min(Tasa)],
+    Menor_Tasa = min(Tasa)
+  ) %>%
+  ungroup()
+
+tabla_gt2 <- comparacion %>%
+  gt() %>%
+  tab_header(
+    title = "CCAA con la Mayor y Menor Tasa de Abortos por Bloques de Años: Pre-COVID, COVID y Post-COVID" ) %>%
+  cols_label(
+    Bloque = "",
+    Mayor_Tasa_CCAA = "CCAA Mayor Tasa",
+    Mayor_Tasa = "Mayor Tasa",
+    Menor_Tasa_CCAA = "CCAA Menor Tasa",
+    Menor_Tasa = "Menor Tasa") %>%
+  tab_source_note(
+    source_note = "Las tasas están expresadas por 1.000 habitantes de cada CCAA.")  %>%
+  tab_style(
+  style = cell_text(size = px(10)),
+  locations = cells_source_notes()
+)
+
+
+
+tabla_gt2%>% gtExtras::gt_theme_pff()
+
+ 
+
+```
+
+# Leyes que regulan el aborto en el mundo 
+
+## condiciones por aborto y despues de aborto
+
+En este gráfico vemos las principlaes bases legales por las cuales el aborto està permitido, y nos muestra que **la mayoría de los países autorizan el aborto cuando existe riesgo para la vida de la mujer**, lo que refleja un amplio consenso internacional sobre esta condición. **La autorización disminuye** en los **casos relacionados con la salud física y es aún más limitada cuando se trata de malformaciones fetales o de embarazos derivados de violación o incesto**. Este patrón evidencia importantes diferencias legales y culturales entre los países y muestra que, fuera de las situaciones de riesgo vital, el **acceso al aborto sigue siendo restrictivo** en muchas partes del mundo.
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+united_nations_ruta <-"./datasets/united_nations.csv"
+df_unitednat <- rio::import(united_nations_ruta)
+
+df_unitednat <- df_unitednat %>%
+  select(V2, V3, V4, V5, V6, V7, V8, V9, V10, V11, V12, V13)
+
+colnames(df_unitednat) <- c(
+  "country",
+  "country code",
+  "life_risk",
+  "physical_health",
+  "rape_incest",
+  "fetal_impairment",
+  "medical_authorization",
+  "judicial_consent_minors",
+  "husband_consent",
+  "criminal_charge",
+  "post_abortion_law",
+  "contradictory_legal_systems"
+)
+
+df_basi_legali_noNA <- df_unitednat %>%
+  select(country, life_risk, physical_health, rape_incest, fetal_impairment) %>%
+  mutate(
+    across(
+      c(life_risk, physical_health, rape_incest, fetal_impairment),
+      ~ case_when(
+        . == "Yes" ~ 1,
+        . == "No"  ~ 0,
+        TRUE ~ NA_real_))) %>%
+  drop_na(life_risk, physical_health, rape_incest, fetal_impairment)
+
+aa <- df_basi_legali_noNA %>%
+  summarise(
+    across(
+      c(life_risk, physical_health, rape_incest, fetal_impairment),
+      ~ sum(., na.rm = TRUE))
+    )
+
+paises_si <- df_basi_legali_noNA %>%
+  filter(
+    life_risk == 1,
+    physical_health == 1,
+    rape_incest == 1,
+    fetal_impairment == 1
+  )
+
+
+
+baseleg_long <- df_unitednat %>%
+  select(country, life_risk, physical_health, rape_incest, fetal_impairment) %>%
+  pivot_longer(
+    cols      =  -country,
+    names_to  = "si_por_variable",
+    values_to = "value") %>%
+  filter(value ==  "Yes") %>%       
+  count(si_por_variable, name = "n_yes")
+
+
+
+
+p2 <- ggplot(baseleg_long, aes(x = si_por_variable, y = n_yes)) +
+  geom_col(fill = "#2A9D8F") +  
+  coord_flip() +
+  labs(
+    title = "Países que autorizan el aborto en todas las bases legales",
+    x = "Variable",
+    y = "Número de países"
+  ) +
+  theme_minimal()
+
+ggplotly(p2, width = 600, height = 400)
+
+```
+
+## Restricciones adicionales cuando el aborto es legal
+
+El gráfico muestra que, **incluso cuando el aborto es legal**, muchos países imponen restricciones adicionales de tipo procedimental. La más frecuente es la autorización médica, presente en un elevado número de países, lo que limita la autonomía de la mujer en la toma de decisiones. En menor medida, algunos países exigen consentimiento judicial para las menores o incluso el consentimiento del marido, **restricciones que evidencian la persistencia de barreras legales** e institucionales al acceso efectivo al aborto.
+
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+df_restriccion <- df_unitednat %>%
+  select(country, medical_authorization, judicial_consent_minors, husband_consent) %>%
+  mutate(
+    across(
+      c(medical_authorization, judicial_consent_minors, husband_consent),
+      ~ case_when(
+        . == "Yes" ~ 1,
+        . == "No"  ~ 0,
+        TRUE ~ NA_real_))) %>%
+  drop_na(medical_authorization, judicial_consent_minors, husband_consent)
+
+restrictions_long <- df_unitednat %>%
+  select(country, medical_authorization, judicial_consent_minors, husband_consent) %>%
+  pivot_longer(
+    cols      = -country,
+    names_to  = "restriction",
+    values_to = "value"
+  ) %>%
+  filter(value == "Yes") %>%
+  count(restriction, name = "n_yes")
+
+
+k3 <- ggplot(restrictions_long, aes(x = restriction, y = n_yes)) +
+  geom_col(fill = "#E63946") +
+  coord_flip() +
+  labs(
+    title = "Países con restricciones procesales al aborto",
+    x = "Tipo de restricción",
+    y = "Número de países"
+  )
+ggplotly(k3, width = 600, height = 400)
+
+```
+
+## Países donde el aborto está penalizado
+
+¿En cuántos países está penalizado el aborto? ¿Cuántos países cuentan con leyes sobre atención postaborto? ¿Y cómo se relaciona esta información con las bases legales?
+
+```{r}
+df_crimen <- df_unitednat%>%
+  select(country, life_risk, physical_health, rape_incest, fetal_impairment,
+         criminal_charge, post_abortion_law, contradictory_legal_systems)
+
+
+crimen_summary <- df_crimen %>%
+  summarise(
+    criminalized_yes      = sum(criminal_charge == "Yes", na.rm = TRUE),
+    criminalized_no       = sum(criminal_charge == "No",  na.rm = TRUE),
+    post_abortion_yes     = sum(post_abortion_law == "Yes", na.rm = TRUE),
+    post_abortion_no      = sum(post_abortion_law == "No",  na.rm = TRUE),
+    contradictions_yes    = sum(contradictory_legal_systems == "Yes", na.rm = TRUE),
+    contradictions_no     = sum(contradictory_legal_systems == "No",  na.rm = TRUE)
+  )
+
+
+crimen_long <- tibble(
+  categoria = c("criminal_charge", "criminal_charge",
+                "post_abortion_law", "post_abortion_law",
+                "contradictory_legal_systems", "contradictory_legal_systems"),
+  value     = c("Yes", "No", "Yes", "No", "Yes", "No"),
+  n         = c(crimen_summary$criminalized_yes,
+                crimen_summary$criminalized_no,
+                crimen_summary$post_abortion_yes,
+                crimen_summary$post_abortion_no,
+                crimen_summary$contradictions_yes,
+                crimen_summary$contradictions_no)
+)
+
+p3 <- ggplot(crimen_long, aes(x = categoria, y = n, fill = value)) +
+  geom_col(position = "dodge") +
+  coord_flip() +
+  labs(
+    title = "Criminalización del aborto y leyes post-aborto",
+    x = "Categoría",
+    y = "Número de países",
+    fill = "Valor"
+  ) +
+  theme_minimal()
+
+ggplotly(p3, width = 600, height = 400)
+
+
+
+```
